@@ -4,7 +4,9 @@ import 'package:first_quiz/data/questions.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class QuestionScreen extends StatefulWidget {
-  const QuestionScreen({super.key});
+  const QuestionScreen({super.key, required this.onSelectAnswer});
+
+  final void Function(String answer) onSelectAnswer;
 
   @override
   State<QuestionScreen> createState() {
@@ -14,8 +16,10 @@ class QuestionScreen extends StatefulWidget {
 
 class _QuestionScreenState extends State<QuestionScreen> {
   var currentQuestionIndex = 0;
+  final int maxNumQuestion = 6;
 
-  void answerQuestion() {
+  void answerQuestion(String selectedAnswer) {
+    widget.onSelectAnswer(selectedAnswer);
     setState(() {
       currentQuestionIndex++;
     });
@@ -42,43 +46,15 @@ class _QuestionScreenState extends State<QuestionScreen> {
           const SizedBox(height: 10),
           ...currentQuestion.getShuffledAnswers().map((answer) {
             return AnswerButton(
-                answerText: answer, onAnswerPress: answerQuestion);
+                answerText: answer,
+                onAnswerPress: () {
+                  answerQuestion(answer);
+                });
           }),
-          // AnswerButton(
-          //     onAnswerPres: () {}, answerText: currentQuestion.answers[0]),
-          // AnswerButton(
-          //     onAnswerPres: () {}, answerText: currentQuestion.answers[1]),
-          // AnswerButton(
-          //     onAnswerPres: () {}, answerText: currentQuestion.answers[2]),
-          // AnswerButton(
-          //     onAnswerPres: () {}, answerText: currentQuestion.answers[3]),
+          const SizedBox(height: 10),
+          Text('Quiz question ${currentQuestionIndex + 1}/$maxNumQuestion')
         ]),
       ),
     );
-
-    // Center(
-    //   child: Column(
-    //     mainAxisAlignment: MainAxisAlignment.center,
-    //     children: [
-    //       // Display welcome text
-    //       const StyledText('Do you like Flutter', Colors.black, 28.0),
-    //       // add some space
-    //       const SizedBox(height: 10),
-    //       OutlinedButton.icon(
-    //         onPressed: () {},
-    //         style: OutlinedButton.styleFrom(
-    //           padding: const EdgeInsets.all(10),
-    //           foregroundColor: Colors.black,
-    //           //backgroundColor: Colors.deepOrangeAccent,
-    //         ),
-    //         icon: const Icon(Icons.arrow_circle_right_outlined),
-    //         label: const Text(
-    //           'Start Quiz',
-    //           style: TextStyle(fontSize: 20.0),
-    //         ),
-    //       ),
-    //     ],
-    //   ),
-    // );
   }
 }
