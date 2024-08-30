@@ -15,7 +15,7 @@ class StartScreen extends StatelessWidget {
           // Display quiz image
           Image.asset(
             //'assets/images/quiz-logo.png',
-            'assets/images/ArogyaCLogo.png',
+            'assets/images/ArogyaCLogo-removebg.png',
             width: 500,
             height: 500,
             //color: const Color.fromARGB(125, 255, 255, 255),
@@ -24,7 +24,7 @@ class StartScreen extends StatelessWidget {
           // Display welcome text
           Text('Learn Flutter the fun way!',
               style: GoogleFonts.lato(
-                color: Colors.white,
+                color: Colors.black,
                 fontSize: 28.0,
                 fontWeight: FontWeight.bold,
               )),

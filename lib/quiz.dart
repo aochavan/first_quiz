@@ -5,7 +5,10 @@ import 'package:first_quiz/question_screen.dart';
 import 'package:first_quiz/data/questions.dart';
 
 // Variable declaration
-var listColor = [Colors.deepOrangeAccent, Colors.deepPurpleAccent];
+var listColor = [
+  const Color.fromARGB(255, 250, 165, 140),
+  const Color.fromARGB(255, 211, 196, 252)
+];
 var beginColorAlign = Alignment.topLeft;
 var endColorAlign = Alignment.bottomRight;
 
